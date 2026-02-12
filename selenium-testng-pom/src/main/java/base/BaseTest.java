@@ -9,6 +9,7 @@ import utils.TestListener;
 
 @Listeners(TestListener.class)
 public class BaseTest {
+    protected WebDriver driver;
 
     @BeforeMethod
     public void setupDriver() {
@@ -19,6 +20,7 @@ public class BaseTest {
 
     @AfterMethod
     public void teardownDriver() {
+
         DriverManager.quitDriver();
     }
 }

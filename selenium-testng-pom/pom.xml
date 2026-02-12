@@ -13,6 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
+        <groups>all</groups>
 
         <!-- Dependency versions -->
         <selenium.version>4.40.0</selenium.version>
@@ -22,20 +23,67 @@
         <log4j2.version>2.25.3</log4j2.version>
         <mysql.version>9.6.0</mysql.version>
         <restassured.version>5.5.7</restassured.version>
-        <poi.version>5.2.3</poi.version>
+        <poi.version>5.4.0</poi.version>
         <commonsio.version>2.16.0</commonsio.version>
     </properties>
+
+    <profiles>
+
+        <!-- SMOKE RUN -->
+        <profile>
+            <id>smoke</id>
+            <properties>
+                <groups>smoke</groups>
+            </properties>
+        </profile>
+
+        <!-- REGRESSION RUN -->
+        <profile>
+            <id>regression</id>
+            <properties>
+                <groups>regression</groups>
+            </properties>
+        </profile>
+
+        <!-- UI ONLY -->
+        <profile>
+            <id>ui</id>
+            <properties>
+                <groups>ui</groups>
+            </properties>
+        </profile>
+
+        <!-- API ONLY -->
+        <profile>
+            <id>api</id>
+            <properties>
+                <groups>api</groups>
+            </properties>
+        </profile>
+
+        <!-- E2E ONLY -->
+        <profile>
+            <id>e2e</id>
+            <properties>
+                <groups>e2e</groups>
+            </properties>
+        </profile>
+
+    </profiles>
 
     <repositories>
         <repository>
             <id>central</id>
             <url>https://repo.maven.apache.org/maven2</url>
         </repository>
-        <repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
             <id>qameta</id>
             <url>https://repo.qameta.io/maven/</url>
-        </repository>
-    </repositories>
+        </pluginRepository>
+    </pluginRepositories>
 
     <dependencies>
         <!-- Selenium -->
@@ -102,7 +150,6 @@
             <version>${restassured.version}</version>
         </dependency>
 
-        <!-- Apache POI -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
@@ -114,7 +161,6 @@
             <version>${poi.version}</version>
         </dependency>
 
-        <!-- Commons IO -->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
@@ -124,24 +170,31 @@
 
     <build>
         <plugins>
-            <!-- Surefire for TestNG -->
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.1.2</version>
+                <version>3.2.5</version>
+
                 <configuration>
+
                     <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                        <suiteXmlFile>
+                            src/test/resources/testng.xml
+                        </suiteXmlFile>
                     </suiteXmlFiles>
-                    <testFailureIgnore>false</testFailureIgnore>
+
+                    <groups>${groups}</groups>
+
                 </configuration>
             </plugin>
+
 
             <!-- Allure Maven Plugin -->
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
-                <version>${allure.version}</version>
+
                 <configuration>
                     <reportVersion>${allure.version}</reportVersion>
                 </configuration>

@@ -19,10 +19,12 @@ public class BasePage {
     }
 
     protected WebElement find(By locator) {
+
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
     protected void click(By locator) {
+
         find(locator).click();
     }
 
@@ -33,6 +35,7 @@ public class BasePage {
     }
 
     protected String getText(By locator) {
+
         return find(locator).getText();
     }
 

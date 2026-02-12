@@ -1,0 +1,25 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="OpenMRS Automation Suite">
+
+    <!--
+        TestNG  defines:
+        - where tests are located
+        - suite structure
+
+        TestNG DOES NOT decide:
+        - smoke / regression / api / ui
+        Maven will filter tests by groups.
+    -->
+
+    <test name="All Tests">
+
+        <!-- Maven will pass group filters into TestNG at runtime -->
+
+        <packages>
+            <package name="tests"/>
+        </packages>
+
+    </test>
+
+</suite>
