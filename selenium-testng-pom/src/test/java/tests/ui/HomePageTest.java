@@ -27,7 +27,10 @@ public class HomePageTest extends BaseTest {
 
         driver.get(ConfigReader.get("base.url") + "/demo");
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 66d646b (Added locators, fixed links, added waits in BasePage)
         HomePage homePage = new HomePage();
 
         homePage.clickExplore3();
@@ -42,7 +45,10 @@ public class HomePageTest extends BaseTest {
 
         driver.get(ConfigReader.get("base.url") + "/demo");
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 66d646b (Added locators, fixed links, added waits in BasePage)
         HomePage homePage = new HomePage();
 
         homePage.clickExplore2();
