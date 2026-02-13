@@ -53,9 +53,8 @@ build/
 ### VS Code ###
 .vscode/
 
-### Mac OS ###
-.DS_Store
-.idea/
+# Mac OS & IDE & build artifacts
 *.war
-
-openmrs.war
+*.DS_Store
+.idea/
+target/
