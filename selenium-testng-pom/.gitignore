@@ -55,6 +55,7 @@ build/
 
 # Mac OS & IDE & build artifacts
 *.war
+openmrs.war
 *.DS_Store
 .idea/
 target/
