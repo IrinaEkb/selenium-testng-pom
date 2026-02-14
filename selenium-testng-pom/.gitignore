@@ -55,10 +55,21 @@ build/
 
 # Mac OS & IDE & build artifacts
 *.war
+<<<<<<< HEAD
 openmrs.war
 .DS_Store
 **/.DS_Store
 
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+openmrs.war
+=======
+>>>>>>> 7eee559 (Remove default README)
+=======
+openmrs.war
+>>>>>>> ad1e98a (Fix .gitignore before pull)
+>>>>>>> fb0ccd0 (Fix .gitignore before pull)
 *.DS_Store
 .idea/
 target/
