@@ -1,2 +1,5 @@
 openmrs.war
+<<<<<<< HEAD
 .DS_Store
+=======
+>>>>>>> abc424a (Ignore openmrs.war to prevent future commits)
