@@ -22,7 +22,11 @@ public class HomePageTest extends BaseTest {
 
     @Test(description = "[UI-002][Smoke] Click Explore OpenMRS 3 button", groups = {"smoke", "ui"})
     public void testExploreOpenMRS3() {
+
         driver.get(ConfigReader.get("ui.base.url") + "/demo");
+
+        driver.get(ConfigReader.get("base.url") + "/demo");
+
 
         HomePage homePage = new HomePage();
 
@@ -33,7 +37,11 @@ public class HomePageTest extends BaseTest {
 
     @Test(description = "[UI-003][Smoke] Click Explore OpenMRS 2 button", groups = {"smoke", "ui"})
     public void testExploreOpenMRS2() {
+
         driver.get(ConfigReader.get("ui.base.url") + "/demo");
+
+        driver.get(ConfigReader.get("base.url") + "/demo");
+
 
         HomePage homePage = new HomePage();
 
