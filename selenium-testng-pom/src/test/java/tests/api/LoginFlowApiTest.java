@@ -39,13 +39,22 @@ public class LoginFlowApiTest extends BaseApiTest {
 
         response.then().statusCode(200);
 
+        // for debugging
+        System.out.println("API username: " + ConfigReader.get("api.username"));
+        System.out.println("Auth header: " + basicAuth());
+        System.out.println("Password length: " + ConfigReader.get("api.password").length());
+        System.out.println(response.getStatusCode());
+        System.out.println(response.getBody().asString());
+
         Assert.assertTrue(
                 response.jsonPath()
                         .getBoolean("authenticated"));
 
         Assert.assertNotNull(
                 response.jsonPath()
-                        .getString("sessionId"));
+                        .getString("user.uuid"), "User UUID should not be null");
+
+
     }
 
     @Test(
