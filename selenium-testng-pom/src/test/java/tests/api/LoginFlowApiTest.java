@@ -1,6 +1,7 @@
 package tests.api;
 
 import io.restassured.RestAssured;
+import utils.AuthHelper;
 import utils.BaseApiTest;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -10,19 +11,10 @@ import utils.ConfigReader;
 import java.util.Base64;
 
 
+
 public class LoginFlowApiTest extends BaseApiTest {
+// authentication layer
 
-    private String basicAuth() {
-
-        String user = ConfigReader.get("api.username");
-        String pass = ConfigReader.get("api.password");
-
-        String auth = user + ":" + pass;
-
-        return "Basic " +
-                Base64.getEncoder()
-                        .encodeToString(auth.getBytes());
-    }
 
     @Test(
             description = "[API-LOGIN-001] Valid login",
@@ -33,7 +25,7 @@ public class LoginFlowApiTest extends BaseApiTest {
         Response response =
                 RestAssured
                         .given()
-                        .header("Authorization", basicAuth())
+                        .header("Authorization", AuthHelper.defaultAdminAuth())
                         .when()
                         .get("/ws/rest/v1/session");
 
@@ -41,7 +33,7 @@ public class LoginFlowApiTest extends BaseApiTest {
 
         // for debugging
         System.out.println("API username: " + ConfigReader.get("api.username"));
-        System.out.println("Auth header: " + basicAuth());
+        System.out.println("Auth header: " + AuthHelper.defaultAdminAuth());
         System.out.println("Password length: " + ConfigReader.get("api.password").length());
         System.out.println(response.getStatusCode());
         System.out.println(response.getBody().asString());

@@ -18,6 +18,7 @@ public class ConfigReader {
     }
 
     public static String get(String key) {
+
         return properties.getProperty(key);
     }
 }

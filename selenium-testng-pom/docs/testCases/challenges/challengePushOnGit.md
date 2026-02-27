@@ -53,3 +53,10 @@ Don't:
 Push repositories containing files larger than 100 MB.
 Ignore history when cleaning large files — verification is essential.
 Blindly rely on cloning a fresh repo as the only safe method.
+
+
+
+
+
+
+
