@@ -64,6 +64,7 @@ openmrs.war
 <<<<<<< HEAD
 <<<<<<< HEAD
 openmrs.war
+<<<<<<< HEAD
 =======
 >>>>>>> 7eee559 (Remove default README)
 =======
@@ -71,5 +72,9 @@ openmrs.war
 >>>>>>> ad1e98a (Fix .gitignore before pull)
 >>>>>>> fb0ccd0 (Fix .gitignore before pull)
 *.DS_Store
+=======
+.DS_Store
+**/.DS_Store
+>>>>>>> 1ef9745 (Fixed API login test, AuthHelper, updated ConfigReader and test structure, reorganized docs)
 .idea/
 target/
