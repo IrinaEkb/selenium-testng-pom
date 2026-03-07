@@ -19,17 +19,20 @@
         <selenium.version>4.40.0</selenium.version>
         <testng.version>7.12.0</testng.version>
         <webdrivermanager.version>6.3.3</webdrivermanager.version>
-        <allure.version>2.32.0</allure.version>
+        <allure.testng.version>2.32.0</allure.testng.version>
+        <allure.maven.version>2.12.0</allure.maven.version>
         <log4j2.version>2.25.3</log4j2.version>
         <mysql.version>9.6.0</mysql.version>
         <restassured.version>5.5.7</restassured.version>
         <poi.version>5.4.0</poi.version>
         <commonsio.version>2.16.0</commonsio.version>
+        <jackson.version>2.21.1</jackson.version>
+        <slf4j2.version>2.25.3</slf4j2.version>
+
     </properties>
 
     <profiles>
 
-        <!-- SMOKE RUN -->
         <profile>
             <id>smoke</id>
             <properties>
@@ -37,7 +40,6 @@
             </properties>
         </profile>
 
-        <!-- REGRESSION RUN -->
         <profile>
             <id>regression</id>
             <properties>
@@ -45,7 +47,6 @@
             </properties>
         </profile>
 
-        <!-- UI ONLY -->
         <profile>
             <id>ui</id>
             <properties>
@@ -53,7 +54,6 @@
             </properties>
         </profile>
 
-        <!-- API ONLY -->
         <profile>
             <id>api</id>
             <properties>
@@ -61,7 +61,6 @@
             </properties>
         </profile>
 
-        <!-- E2E ONLY -->
         <profile>
             <id>e2e</id>
             <properties>
@@ -77,13 +76,6 @@
             <url>https://repo.maven.apache.org/maven2</url>
         </repository>
     </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>qameta</id>
-            <url>https://repo.qameta.io/maven/</url>
-        </pluginRepository>
-    </pluginRepositories>
 
     <dependencies>
         <!-- Selenium -->
@@ -111,7 +103,7 @@
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
-            <version>${allure.version}</version>
+            <version>${allure.testng.version}</version>
         </dependency>
 
         <!-- Logging -->
@@ -125,6 +117,11 @@
             <artifactId>log4j-core</artifactId>
             <version>${log4j2.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j2-impl</artifactId>
+            <version>${slf4j2.version}</version>
+        </dependency>
 
         <!-- MySQL Connector -->
         <dependency>
@@ -133,7 +130,6 @@
             <version>${mysql.version}</version>
         </dependency>
 
-        <!-- REST Assured -->
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
@@ -166,6 +162,14 @@
             <artifactId>commons-io</artifactId>
             <version>${commonsio.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
@@ -194,11 +198,9 @@
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
-
-                <configuration>
-                    <reportVersion>${allure.version}</reportVersion>
-                </configuration>
+                <version>${allure.maven.version}</version>
             </plugin>
+
         </plugins>
     </build>
 

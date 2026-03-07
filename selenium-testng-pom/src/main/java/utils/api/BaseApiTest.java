@@ -1,5 +1,5 @@
 
-package utils;
+package utils.api;
 
 import io.restassured.RestAssured;
 import org.testng.annotations.BeforeClass;
@@ -12,6 +12,7 @@ public class BaseApiTest {
 
         RestAssured.baseURI =
                 ConfigReader.get("api.base.url");
+        RestAssured.basePath = "/ws/rest/v1";
 
     }
 }

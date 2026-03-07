@@ -1,0 +1,240 @@
+.
+├── azure-pipelines.yml
+├── docker-compose.yml
+├── project_structure.txt
+└── selenium-testng-pom
+    ├── allure-results
+    │   ├── 00505ae4-e4df-4a87-b707-877ef647d4c8-container.json
+    │   ├── 005bb39f-c21a-4d59-ab7e-07cf8d1e84ce-result.json
+    │   ├── 04a5cc4c-b8a3-473f-8136-ad0f1d15711e-container.json
+    │   ├── 07e87b0d-37fc-49f4-9a87-51bd9a075ae9-result.json
+    │   ├── 093fd110-f1c6-4487-aa6c-680e21a82e6b-result.json
+    │   ├── 099141a2-91de-480b-815e-5f1ef053503f-result.json
+    │   ├── 0b789cba-6b99-4ca7-b9a1-179d64b4dd08-result.json
+    │   ├── 0b843487-c300-48b6-a18c-223b6be0b76a-result.json
+    │   ├── 0c9cc5e3-43e6-4d7e-9972-572ebe43a105-container.json
+    │   ├── 0dbae3b9-0010-4a47-beb3-8a435323a7dc-result.json
+    │   ├── 0fa5bcaa-3b87-4002-ae49-1ad91e9a36f5-container.json
+    │   ├── 10c0d858-cb7f-486a-b58f-06b0d8b0eff0-result.json
+    │   ├── 17e6aefa-dc70-4f83-8669-7f5b346d9c3c-container.json
+    │   ├── 1b83d9ef-b3f8-4c19-b36e-eaf009363d57-result.json
+    │   ├── 1c28283c-411e-438c-9613-029d84f922dc-result.json
+    │   ├── 1c698f27-a489-460b-8551-d52f420e1541-container.json
+    │   ├── 1d49a3ea-99fc-4b7d-8b80-5bb86109345d-result.json
+    │   ├── 202d22e6-be59-4680-8213-02c18e980009-result.json
+    │   ├── 23624283-3fe8-428d-9518-c3041c7a5ade-container.json
+    │   ├── 24befa6b-34a4-45ce-8a1b-2da1089a2e2a-container.json
+    │   ├── 2571bad1-980a-4386-9f48-6dee22fac333-result.json
+    │   ├── 25868a82-0bc7-4fcf-a675-b7e42f56eab6-container.json
+    │   ├── 2676c445-4699-476b-b5f8-0ac994eaa6cf-container.json
+    │   ├── 2812525d-4480-40cb-afa0-cc5e0d90a767-container.json
+    │   ├── 28f4fc2d-eb3c-49ed-b424-da2eeea3456a-result.json
+    │   ├── 2977ad72-6d30-4592-9359-102101618330-result.json
+    │   ├── 2f8dfb09-635d-4293-95c8-08b244b88438-container.json
+    │   ├── 30d645a4-5ecd-43bf-950a-ff0655f1ba73-result.json
+    │   ├── 38de0216-416f-4e3c-9ee0-aab25fed6b41-container.json
+    │   ├── 3d6c1d63-f9fb-4133-9912-c1a99ea634af-result.json
+    │   ├── 3e7fdd7e-efbe-4765-8025-51668497c548-container.json
+    │   ├── 3f3b6139-02c8-4a4f-96ae-03334a8f4af5-container.json
+    │   ├── 40598e37-b318-4ccc-b443-6edcd9bed3d2-result.json
+    │   ├── 45ace72f-c2d8-4f92-b8d2-a2f0dd1a51ef-result.json
+    │   ├── 45e671f2-225e-40b9-a931-c3837021e6c2-container.json
+    │   ├── 4bd9c049-2262-41ae-a515-507d72171e69-result.json
+    │   ├── 50d4ef74-9fda-474e-9c80-d3cec73b0679-result.json
+    │   ├── 53f3e0b4-9e34-47f9-8973-002c4bd54962-container.json
+    │   ├── 566fb9d6-2c8f-40fd-904c-881fa57f54b5-container.json
+    │   ├── 5b506415-cc06-4a04-875a-357745ece3aa-result.json
+    │   ├── 5b7b0a9c-35ce-4c4b-8b4d-b5ccff90bc64-result.json
+    │   ├── 5b85175d-e4d3-4f74-a447-b5a685a0c781-result.json
+    │   ├── 5d40046c-c043-4d54-a92a-5ce9f6a83bc1-result.json
+    │   ├── 5e2d82cc-fb33-40c2-8a8f-cc18e1d600df-container.json
+    │   ├── 5e80ae58-3512-48ea-92a3-7209ab3ea780-container.json
+    │   ├── 5ef1c785-9e27-4f1b-8db6-e3e0269573b0-result.json
+    │   ├── 60b3618c-d8c1-4cc2-94a8-5c3250d46e78-result.json
+    │   ├── 67710634-3a85-45e3-b657-0600092c6ef4-container.json
+    │   ├── 6868b3d5-b9d0-406f-8ad4-0a2209986bd4-result.json
+    │   ├── 6e29c529-bd9a-481a-8306-e0774843113a-container.json
+    │   ├── 74153c14-d836-4fbb-ab49-9a5e5280e1fe-result.json
+    │   ├── 7474e596-feaf-49e8-a2fe-817a2ad04be3-container.json
+    │   ├── 783058c7-46d9-483d-a52d-37fe6bb2cb00-container.json
+    │   ├── 784d96b9-339f-470e-8d42-28dfb9f7d7af-result.json
+    │   ├── 793afad8-b970-4a56-9c29-82c055dc7c10-container.json
+    │   ├── 7a1ad23d-9a97-48c3-8a5e-fd4a3e01c738-container.json
+    │   ├── 7a5f7b37-34ca-4788-b40e-df6f5e8074df-result.json
+    │   ├── 7b134204-3d16-46b8-a93f-245929729b65-result.json
+    │   ├── 7d6df4ab-34aa-4553-96b9-13ba7f2afb9c-result.json
+    │   ├── 7dff1ff2-df98-4f03-81de-13c13800d129-result.json
+    │   ├── 8aae372c-f20c-4776-8a59-0eb3af1a96a3-container.json
+    │   ├── 8d5bc816-a268-4626-a695-68fcc7764d93-container.json
+    │   ├── 94121035-2ab2-4447-a252-14fe4393297e-container.json
+    │   ├── 9719319a-1f38-4ba2-94af-53c4a3db025f-container.json
+    │   ├── 97656e28-a600-44b5-9780-e191cc0d9c8e-container.json
+    │   ├── 980d4970-29bb-4f45-a445-96a2c2bbd2c4-container.json
+    │   ├── 9dbd71dc-d162-4438-a29f-b591123462d8-result.json
+    │   ├── a0b70556-4b3d-43c2-b848-4584c9cbc1b5-result.json
+    │   ├── a3108eac-8d45-4f29-a72d-306f6ae97bf0-result.json
+    │   ├── a600796f-886c-461d-837b-e31aae786921-container.json
+    │   ├── a8d01cbd-7370-4f24-9fca-843cdc615352-result.json
+    │   ├── a943e922-90fa-4109-ba9e-9935aec9f3a5-result.json
+    │   ├── a9a546ad-92b9-4b05-bdb6-6b888d651b1f-result.json
+    │   ├── ab5c8868-48dc-4c45-9725-adabe644d083-result.json
+    │   ├── aedb8475-445c-40bc-888f-73d4c47e25f5-container.json
+    │   ├── afcf2e4a-78f5-4ed7-9b31-3136df71b750-result.json
+    │   ├── b288dab5-4f28-4e4d-ac8f-9ae806bb689b-result.json
+    │   ├── b4e4caf4-5b91-482d-b086-edab07d13bf2-result.json
+    │   ├── b5a8b9b2-0c8f-483f-85ba-13be5828f65a-container.json
+    │   ├── ba30e6b2-3e99-415d-b263-32ebbad5b1dd-result.json
+    │   ├── bab5f210-d9e8-487e-a9e5-0fb5d4748c4a-container.json
+    │   ├── bd8c3129-313a-4124-b810-87589cf51cf5-result.json
+    │   ├── bf531300-a1b6-4d84-a9b9-4fc01585e7f8-result.json
+    │   ├── bf7d879c-2651-42e2-a1fb-1e1dfe4951e3-container.json
+    │   ├── c0e27c2b-679d-464a-96ae-e3d3680bdf51-container.json
+    │   ├── c1e8a08c-22a3-4563-adb1-b62c97782309-result.json
+    │   ├── c2494702-a7bb-4ce4-91dd-0baa47685035-result.json
+    │   ├── c5152660-a3c2-4674-9df3-05a44b5a81c6-result.json
+    │   ├── c807c19e-37cb-4afd-9bf4-90f59fb030a4-result.json
+    │   ├── cc7a151d-f05d-4881-b4f3-2788e1aaa6c9-container.json
+    │   ├── cdb15043-55de-4169-b10c-3c1e6ab14bcd-result.json
+    │   ├── ce743cb9-2584-456e-b378-9677fb3d7abb-result.json
+    │   ├── d30f372e-6a8b-4c9b-9ff8-1a737dc2998d-container.json
+    │   ├── d35613e3-a4e0-4169-b3c7-ebe09f611749-result.json
+    │   ├── d6ab2ab5-b525-4e4d-8085-d43eeaaad33b-result.json
+    │   ├── de0ce3ce-041e-4ec5-8f32-fd4e958a02cc-result.json
+    │   ├── e544ae83-7b06-4575-bcd9-b363d1793849-result.json
+    │   ├── e551ca74-a02b-4a7b-b1d8-a94515d19835-container.json
+    │   ├── e6a465f7-b11d-4c61-96f6-4ed4796606d4-result.json
+    │   ├── e7eef4b8-ec79-4af9-b0f2-5763f58cc3dd-result.json
+    │   ├── e7fab009-fc0c-48ad-802c-ad9650637a9c-result.json
+    │   ├── e8c7c116-5736-4d9b-b6de-8d62e82a22f1-container.json
+    │   ├── e8e2dde2-cfd7-4d8d-88c4-fd6f681f6f50-result.json
+    │   ├── ed96d5d1-984e-45b3-b89f-d3964e3345e9-container.json
+    │   ├── f18d75c8-4617-435f-8994-c183f52a8d52-result.json
+    │   ├── f1ed1d9c-234d-419f-9e65-be4eb9cbfd1d-container.json
+    │   ├── f250efd1-0573-4023-9a85-24cf6e1cb8bc-result.json
+    │   ├── f30c5305-433f-4f6d-9897-2cd11c96f045-container.json
+    │   ├── f77aa19b-798c-4cc2-96d2-c12cf2f9e91c-container.json
+    │   ├── f7fcde1c-7540-448a-abc4-6b0ba3cf76ae-result.json
+    │   ├── f8bee14b-c656-4dc3-8686-88f010a90104-result.json
+    │   ├── fb590cad-1a1c-437d-9b2a-e086e4304203-container.json
+    │   ├── fb8514d9-6bfb-4066-b214-0d6da6a3ac93-result.json
+    │   ├── fe20f619-b612-47ae-a3c4-a346fb7c1007-result.json
+    │   ├── ff05725b-778f-4a3f-8e98-3d1a7b22bd44-result.json
+    │   └── ffe1e82a-c7a3-48eb-91b8-556118714cc2-result.json
+    ├── docs
+    │   ├── test-strategy.md
+    │   └── testCases
+    │       ├── challenges
+    │       │   ├── challengePushOnGit.md
+    │       │   └── testApiLogin.md
+    │       ├── PROJ-101-demo-page.md
+    │       ├── PROJ-102-api-login-session.md
+    │       └── PROJ-103-patient-api-test.md
+    ├── logs
+    ├── pom.xml
+    ├── READme.md
+    ├── screenshots
+    ├── src
+    │   ├── main
+    │   │   └── java
+    │   │       ├── base
+    │   │       │   ├── BasePage.java
+    │   │       │   └── BaseTest.java
+    │   │       ├── pages
+    │   │       │   └── HomePage.java
+    │   │       └── utils
+    │   │           ├── AuthHelper.java
+    │   │           ├── BaseApiTest.java
+    │   │           ├── ConfigReader.java
+    │   │           ├── DBUtil.java
+    │   │           ├── DriverManager.java
+    │   │           ├── ExcelUtil.java
+    │   │           ├── LogUtil.java
+    │   │           ├── PageSourceUtil.java
+    │   │           ├── PatientPayloadFactory.java
+    │   │           ├── RequestSpecs.java
+    │   │           ├── ResponseSpecs.java
+    │   │           ├── ScreenshotUtil.java
+    │   │           └── TestListener.java
+    │   └── test
+    │       ├── java
+    │       │   └── tests
+    │       │       ├── api
+    │       │       │   ├── LoginFlowApiTest.java
+    │       │       │   └── PatientApiTest.java
+    │       │       └── ui
+    │       │           └── HomePageTest.java
+    │       └── resources
+    │           ├── config.properties
+    │           ├── log4j2.xml
+    │           └── testng.xml
+    └── target
+        ├── classes
+        │   ├── base
+        │   │   ├── BasePage.class
+        │   │   ├── BasePage$1.class
+        │   │   └── BaseTest.class
+        │   ├── pages
+        │   │   └── HomePage.class
+        │   └── utils
+        │       ├── AuthHelper.class
+        │       ├── BaseApiTest.class
+        │       ├── ConfigReader.class
+        │       ├── DBUtil.class
+        │       ├── DriverManager.class
+        │       ├── ExcelUtil.class
+        │       ├── LogUtil.class
+        │       ├── PageSourceUtil.class
+        │       ├── PatientPayloadFactory.class
+        │       ├── RequestSpecs.class
+        │       ├── ResponseSpecs.class
+        │       ├── ScreenshotUtil.class
+        │       └── TestListener.class
+        ├── generated-sources
+        │   └── annotations
+        ├── generated-test-sources
+        │   └── test-annotations
+        ├── maven-archiver
+        │   └── pom.properties
+        ├── maven-status
+        │   └── maven-compiler-plugin
+        │       ├── compile
+        │       │   └── default-compile
+        │       │       ├── createdFiles.lst
+        │       │       └── inputFiles.lst
+        │       └── testCompile
+        │           └── default-testCompile
+        │               ├── createdFiles.lst
+        │               └── inputFiles.lst
+        ├── selenium-testng-pom-1.0-SNAPSHOT.jar
+        ├── surefire-reports
+        │   ├── bullet_point.png
+        │   ├── collapseall.gif
+        │   ├── emailable-report.html
+        │   ├── failed.png
+        │   ├── index.html
+        │   ├── jquery-3.6.0.min.js
+        │   ├── navigator-bullet.png
+        │   ├── OpenMRS Automation Suite
+        │   │   ├── All Tests.html
+        │   │   └── All Tests.xml
+        │   ├── passed.png
+        │   ├── skipped.png
+        │   ├── TEST-TestSuite.xml
+        │   ├── testng-reports.css
+        │   ├── testng-reports.js
+        │   ├── testng-reports1.css
+        │   ├── testng-reports2.js
+        │   ├── testng-results.xml
+        │   └── TestSuite.txt
+        └── test-classes
+            ├── config.properties
+            ├── log4j2.xml
+            ├── testng.xml
+            └── tests
+                ├── api
+                │   ├── LoginFlowApiTest.class
+                │   └── PatientApiTest.class
+                └── ui
+                    └── HomePageTest.class
+
+42 directories, 196 files

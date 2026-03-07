@@ -1,6 +1,10 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
-<suite name="OpenMRS Automation Suite">
+<suite name="OpenMRS Automation Suite" verbose="2">
+    <listeners>
+        <listener class-name="org.testng.reporters.TestHTMLReporter"/>
+        <listener class-name="org.testng.reporters.VerboseReporter"/>
+    </listeners>
 
     <!--
         TestNG  defines:

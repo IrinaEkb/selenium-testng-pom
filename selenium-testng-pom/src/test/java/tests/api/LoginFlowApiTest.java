@@ -1,8 +1,8 @@
 package tests.api;
 
 import io.restassured.RestAssured;
-import utils.AuthHelper;
-import utils.BaseApiTest;
+import utils.api.AuthHelper;
+import utils.api.BaseApiTest;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -27,7 +27,7 @@ public class LoginFlowApiTest extends BaseApiTest {
                         .given()
                         .header("Authorization", AuthHelper.defaultAdminAuth())
                         .when()
-                        .get("/ws/rest/v1/session");
+                        .get("/session");
 
         response.then().statusCode(200);
 
@@ -51,7 +51,7 @@ public class LoginFlowApiTest extends BaseApiTest {
 
     @Test(
             description = "[API-LOGIN-002] Invalid password",
-            groups = {"api",}
+            groups = {"api"}
     )
     public void verifyInvalidLogin() {
 
@@ -65,7 +65,7 @@ public class LoginFlowApiTest extends BaseApiTest {
                         .given()
                         .header("Authorization", wrongAuth)
                         .when()
-                        .get("/ws/rest/v1/session");
+                        .get("/session");
 
         Assert.assertTrue(
                 response.statusCode() == 401 ||
@@ -83,7 +83,7 @@ public class LoginFlowApiTest extends BaseApiTest {
                 RestAssured
                         .given()
                         .when()
-                        .get("/ws/rest/v1/session");
+                        .get("/session");
 
         Assert.assertTrue(
                 response.statusCode() == 401 ||
