@@ -1,4 +1,4 @@
-# PROJ-101 — OpenMRS Demo Page Should Be Accessible
+# PROJ-1 — OpenMRS Demo Page Should Be Accessible
 
 ## Story Description
 
