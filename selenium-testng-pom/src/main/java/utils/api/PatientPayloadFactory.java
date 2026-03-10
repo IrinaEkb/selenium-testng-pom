@@ -30,7 +30,7 @@ public class PatientPayloadFactory {
 
     // Helper: generate random string of given length
     private static String randomString(int length) {
-        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         StringBuilder sb = new StringBuilder(length);
         for (int i = 0; i < length; i++) {
             sb.append(chars.charAt(ThreadLocalRandom.current().nextInt(chars.length())));
@@ -44,9 +44,50 @@ public class PatientPayloadFactory {
         return LocalDate.now().minusYears(age);
     }
 
-    private static String generateIdentifier(int length) {
-        return randomString(length);
+   // private static String generateIdentifier(int length) {
+    //    return randomString(length);
+   // }
+   // Generate identifier with valid Luhn Mod-30 check digit
+   private static String generateIdentifier(int length) {
+
+       String chars = "0123456789ACDEFGHJKLMNPRTUVWXY";
+
+       // Generate base without check digit
+       StringBuilder base = new StringBuilder();
+
+       for (int i = 0; i < length - 1; i++) {
+           base.append(chars.charAt(ThreadLocalRandom.current().nextInt(chars.length())));
+       }
+
+       char checkDigit = calculateCheckDigit(base.toString());
+
+       return base.toString() + checkDigit;
+   }
+    private static char calculateCheckDigit(String identifier) {
+
+        String chars = "0123456789ACDEFGHJKLMNPRTUVWXY";
+
+        int factor = 2;
+        int sum = 0;
+
+        for (int i = identifier.length() - 1; i >= 0; i--) {
+
+            int codePoint = chars.indexOf(identifier.charAt(i));
+            int addend = factor * codePoint;
+
+            factor = (factor == 2) ? 1 : 2;
+
+            addend = (addend / 30) + (addend % 30);
+
+            sum += addend;
+        }
+
+        int remainder = sum % 30;
+        int checkCode = (30 - remainder) % 30;
+
+        return chars.charAt(checkCode);
     }
+
 
 
     // Core builder method
