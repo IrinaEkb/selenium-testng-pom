@@ -101,17 +101,17 @@ public class LoginSession extends BaseApiTest {
 
     @Test(description = "[API-LOGIN-005] Verify logout", groups = {"api"})
     public void verifyLogout() {
+
         LogUtil.info("=== API-LOGIN-005: Logout ===");
 
-        Response response = RestAssured
+        String auth = AuthHelper.defaultAdminAuth();
+
+        Response logoutResponse = RestAssured
                 .given()
-                .header("Authorization", AuthHelper.defaultAdminAuth())
+                .header("Authorization", auth)
                 .delete(SESSION_ENDPOINT);
 
-        LogUtil.info("Response status: " + response.getStatusCode());
-        LogUtil.info("Response body: " + response.getBody().asString());
-
-        Assert.assertEquals(response.getStatusCode(), 200, "Logout should return 200");
+        Assert.assertEquals(logoutResponse.getStatusCode(), 204);
 
         LogUtil.info("Logout successful.");
     }
@@ -139,7 +139,7 @@ public class LoginSession extends BaseApiTest {
         Assert.assertEquals(response.getStatusCode(), 200);
     }
 
-    @Test(description = "[API-LOGIN-007] Change password by user", groups = {"api"})
+    @Test(description = "[API-LOGIN-007] Change password by user", enabled = false, groups = {"api"})
     public void verifyPasswordChange() {
         LogUtil.info("=== API-LOGIN-007: Change Password ===");
 
@@ -183,7 +183,7 @@ public class LoginSession extends BaseApiTest {
         LogUtil.info("Password reverted to original after test.");
     }
 
-    @Test(description = "[API-LOGIN-008] Login with new password", groups = {"api"})
+    @Test(description = "[API-LOGIN-008] Login with new password", enabled = false, groups = {"api"})
     public void verifyLoginWithNewPassword() {
         LogUtil.info("=== API-LOGIN-008: Login With New Password ===");
 

@@ -30,7 +30,7 @@ public class PatientPayloadFactory {
 
     // Helper: generate random string of given length
     private static String randomString(int length) {
-        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         StringBuilder sb = new StringBuilder(length);
         for (int i = 0; i < length; i++) {
             sb.append(chars.charAt(ThreadLocalRandom.current().nextInt(chars.length())));
@@ -44,11 +44,10 @@ public class PatientPayloadFactory {
         return LocalDate.now().minusYears(age);
     }
 
-    // Helper: generate identifier of given length
     private static String generateIdentifier(int length) {
-        // All identifiers are same format (letters/numbers), single type
         return randomString(length);
     }
+
 
     // Core builder method
     private static Map<String, Object> buildPayload(String givenName,
