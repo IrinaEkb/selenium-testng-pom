@@ -2,8 +2,7 @@
 
 <suite name="OpenMRS Automation Suite" verbose="2">
     <listeners>
-        <listener class-name="org.testng.reporters.TestHTMLReporter"/>
-        <listener class-name="org.testng.reporters.VerboseReporter"/>
+        <listener class-name="utils.TestListener"/>
     </listeners>
 
     <!--

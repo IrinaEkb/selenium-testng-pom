@@ -19,8 +19,8 @@ public class LoginSession extends BaseApiTest {
     private static final String SESSION_ENDPOINT = "/session";
     private static final String PASSWORD_ENDPOINT = "/password";
 
-    private final String username = ConfigReader.get("api.username");
-    private final String originalPassword = ConfigReader.get("api.password");
+    private final String username = ConfigReader.get("username");
+    private final String originalPassword = ConfigReader.get("password");
     private final String tempPassword = originalPassword + "1"; // for password change
 
     @Test(description = "[API-LOGIN-001] Valid login", groups = {"smoke","api"})

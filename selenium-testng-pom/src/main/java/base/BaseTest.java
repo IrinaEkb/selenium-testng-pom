@@ -1,9 +1,8 @@
 package base;
 
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
+import org.testng.annotations.*;
+import utils.ConfigReader;
 import utils.DriverManager;
 import utils.TestListener;
 
@@ -11,11 +10,11 @@ import utils.TestListener;
 public class BaseTest {
     protected WebDriver driver;
 
+    @Parameters({"browser"})
     @BeforeMethod
-    public void setupDriver() {
-        DriverManager.setDriver();
-        WebDriver driver = DriverManager.getDriver();
-        driver.manage().window().maximize();
+    public void setupDriver(@Optional("chrome") String browser) {
+        DriverManager.setDriver(browser);
+        driver = DriverManager.getDriver();
     }
 
     @AfterMethod

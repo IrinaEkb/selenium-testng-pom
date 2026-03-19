@@ -1,26 +1,61 @@
-version: '3.8'
+
+
 services:
-  mysql:
-    image: mysql:8
+
+  db:
+    image: mysql:8.0
+    container_name: openmrs-db
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: openmrs
       MYSQL_DATABASE: openmrs
       MYSQL_USER: openmrs
       MYSQL_PASSWORD: openmrs
-    command: --default-authentication-plugin=mysql_native_password 
     ports:
       - "3307:3306"
     volumes:
-      - mysql-data:/var/lib/mysql
+      - o3-mysql-data:/var/lib/mysql
 
-  tomcat:
-    image: tomcat:9
-    volumes:
-      - ./openmrs.war:/usr/local/tomcat/webapps/openmrs.war
-    ports:
-      - "8080:8080"
+  backend:
+    image: openmrs/openmrs-reference-application-3-backend:3.6.0
+    container_name: openmrs-backend
+    platform: linux/amd64
+    environment:
+      OMRS_CONFIG_CONNECTION_SERVER: db
+      OMRS_CONFIG_CONNECTION_DATABASE: openmrs
+      OMRS_CONFIG_CONNECTION_USERNAME: openmrs
+      OMRS_CONFIG_CONNECTION_PASSWORD: openmrs
+      OMRS_CONFIG_DATABASE: mysql
+      OMRS_CONFIG_AUTO_UPDATE_DATABASE: "true"
+      OMRS_CONFIG_MODULE_WEB_ADMIN: "true"
+      OMRS_CONFIG_DEFAULT_LOCALE: en
     depends_on:
-      - mysql
+      - db
+    ports:
+      - "8082:8080"
+
+  frontend:
+    image: openmrs/openmrs-reference-application-3-frontend:3.6.0
+    container_name: openmrs-frontend
+    platform: linux/amd64
+    environment:
+      SPA_PATH: /openmrs/spa
+      API_URL: /openmrs
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+
+  gateway:
+    image: openmrs/openmrs-reference-application-3-gateway:3.6.0
+    container_name: openmrs-gateway
+    platform: linux/amd64
+    environment:
+      FRONTEND_URL: http://frontend
+    depends_on:
+      - backend
+      - frontend
+    ports:
+      - "80:80"
 
 volumes:
-  mysql-data:
+  o3-mysql-data:
