@@ -1,6 +1,9 @@
 package utils.api;
 
 import java.time.Instant;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -12,7 +15,8 @@ public class VisitPayloadFactory {
 
     private static String now() {
 
-        return Instant.now().toString();
+        return ZonedDateTime.now(ZoneOffset.UTC)
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ"));
     }
 
     private static Map<String, Object> base(String patientUuid) {
@@ -31,7 +35,7 @@ public class VisitPayloadFactory {
 
     public static Map<String, Object> updateStartDate() {
         Map<String, Object> body = new HashMap<>();
-        body.put("startDatetime", "2020-01-01T10:00:00.000Z");
+        body.put("startDatetime", "2025-01-01T10:00:00.000+0000");
         return body;
     }
 

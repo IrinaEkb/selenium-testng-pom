@@ -16,8 +16,8 @@ public class AuthHelper {
 
     public static String defaultAdminAuth() {
         return basicAuth(
-                ConfigReader.get("api.username"),
-                ConfigReader.get("api.password")
+                ConfigReader.get("username"),
+                ConfigReader.get("password")
         );
     }
 }

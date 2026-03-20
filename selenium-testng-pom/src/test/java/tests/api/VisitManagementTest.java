@@ -87,7 +87,7 @@ public class VisitManagementTest extends BaseApiTest {
         LogUtil.info("Response: " + response.asString());
 
         response.then().spec(ResponseSpecs.success200());
-        Assert.assertTrue(response.jsonPath().getString("startDatetime").contains("2020-01-01"));
+        Assert.assertTrue(response.jsonPath().getString("startDatetime").contains("2025-01-01"));
     }
 
     @Test(description = "[VISIT-005] Delete Visit", groups = {"api"})
