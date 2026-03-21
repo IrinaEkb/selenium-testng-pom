@@ -1,0 +1,47 @@
+
+# Runs tests on 3 environments: demo, docker, local
+# No deploy step, only builds and runs tests, because it is test framework only
+# Mac / Linux compatible
+
+trigger:
+  branches:
+    include:
+      - main
+
+jobs:
+
+  - job: TestDemo
+    displayName: 'Run tests on Demo server'
+    pool:
+      vmImage: 'ubuntu-latest'
+    variables:
+      ENVIRONMENT: 'demo'
+    steps:
+      - script: |
+          echo "Running tests on $(ENVIRONMENT)"
+          ./run_tests.sh $(ENVIRONMENT)
+        displayName: 'Run OpenMRS tests on Demo'
+
+  - job: TestDocker
+    displayName: 'Run tests on Docker server'
+    pool:
+      vmImage: 'ubuntu-latest'
+    variables:
+      ENVIRONMENT: 'docker'
+    steps:
+      - script: |
+          echo "Running tests on $(ENVIRONMENT)"
+          ./run_tests.sh $(ENVIRONMENT)
+        displayName: 'Run OpenMRS tests on Docker'
+
+  - job: TestLocal
+    displayName: 'Run tests on Local SDK'
+    pool:
+      vmImage: 'ubuntu-latest'
+    variables:
+      ENVIRONMENT: 'local'
+    steps:
+      - script: |
+          echo "Running tests on $(ENVIRONMENT)"
+          ./run_tests.sh $(ENVIRONMENT)
+        displayName: 'Run OpenMRS tests on Local SDK'
