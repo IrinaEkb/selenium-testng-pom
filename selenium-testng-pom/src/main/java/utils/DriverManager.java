@@ -2,6 +2,7 @@ package utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.safari.SafariDriver;
 
 public class DriverManager {
@@ -10,13 +11,25 @@ public class DriverManager {
     public static void setDriver(String browser) {
         WebDriver webDriver;
 
+        String headless = System.getProperty("headless");
+
         switch (browser.toLowerCase()) {
             case "chrome":
-                webDriver = new ChromeDriver();
+                ChromeOptions options = new ChromeOptions();
+
+                if ("true".equalsIgnoreCase(headless)) {
+                    options.addArguments("--headless=new");
+                    options.addArguments("--no-sandbox");
+                    options.addArguments("--disable-dev-shm-usage");
+                }
+
+                webDriver = new ChromeDriver(options);
                 break;
+
             case "safari":
                 webDriver = new SafariDriver();
                 break;
+
             default:
                 throw new RuntimeException("Unsupported browser: " + browser);
         }

@@ -189,8 +189,6 @@
                         </suiteXmlFile>
                     </suiteXmlFiles>
 
-                    <groups>${groups}</groups>
-
                 </configuration>
             </plugin>
 

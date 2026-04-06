@@ -3,6 +3,7 @@ package tests.api;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
+import utils.api.ApiClient;
 import utils.api.BaseApiTest;
 import utils.api.PatientPayloadFactory;
 
@@ -44,13 +45,26 @@ public class DebugApi extends BaseApiTest {
 
         Response response = RestAssured
                 .given()
+                .log().all()
                 .auth().preemptive().basic("admin", "Admin123")
                 .contentType("application/json")
                 .body(payload)
-                .post("/idgen/autogenerationoption");
+                .redirects().follow(false)
+                .post("/idgen/autogenerationoption")
+                .then()
+                .log().all()
+                .extract().response();
 
         System.out.println("Response status code: " + response.getStatusCode());
         System.out.println("Response body:");
         response.prettyPrint();
+    }
+
+    @Test
+    public void debugEnvironment() {
+        Response response = ApiClient.get("/session");
+
+        System.out.println("STATUS: " + response.getStatusCode());
+        System.out.println("BODY: " + response.getBody().asString());
     }
 }

@@ -3,6 +3,7 @@ package utils;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -13,10 +14,20 @@ public class ScreenshotUtil {
 
     public static String captureScreenshot(String testName) {
         try {
-            File srcFile = ((TakesScreenshot) DriverManager.getDriver()).getScreenshotAs(OutputType.FILE);
+            WebDriver driver = DriverManager.getDriver();
+
+            if (driver == null) {
+                System.out.println("Driver is null. Screenshot skipped.");
+                return null;
+            }
+
+            File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
             File destFile = new File("screenshots/" + testName + ".png");
             FileUtils.copyFile(srcFile, destFile);
+
             return destFile.getAbsolutePath();
+
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -25,7 +36,10 @@ public class ScreenshotUtil {
 
     public static byte[] getScreenshotBytes(String filePath) {
         try {
-            return Files.readAllBytes(new File(filePath).toPath());
+            System.out.println("Reading screenshot file: " + filePath);
+            byte[] bytes = Files.readAllBytes(new File(filePath).toPath());
+            System.out.println("Screenshot loaded successfully, size: " + bytes.length + " bytes");
+            return bytes;
         } catch (IOException e) {
             e.printStackTrace();
             return new byte[0];
