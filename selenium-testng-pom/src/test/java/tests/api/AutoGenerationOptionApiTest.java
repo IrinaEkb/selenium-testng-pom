@@ -5,10 +5,7 @@ import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import utils.LogUtil;
-import utils.api.BaseApiTest;
-import utils.api.PatientPayloadFactory;
-import utils.api.RequestSpecs;
-import utils.api.ResponseSpecs;
+import utils.api.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,10 +32,9 @@ public class AutoGenerationOptionApiTest extends BaseApiTest {
         payload.put("minLength", 3);
         payload.put("maxLength", 10);
 
-        Response response = RestAssured
-                .given(RequestSpecs.adminRequest())
-                .body(payload)
-                .post("/idgen/identifiersource");
+        Response response = ApiClient.post("/idgen/identifiersource", payload);
+
+        response.then().spec(ResponseSpecs.success201());
 
         return response.jsonPath().getString("uuid");
     }
@@ -50,10 +46,7 @@ public class AutoGenerationOptionApiTest extends BaseApiTest {
         Map<String, Object> payload = PatientPayloadFactory.AutoGenerationOptionPayloads.validOption();
         payload.put("source", sourceUUID);
 
-        Response response = RestAssured
-                .given(RequestSpecs.adminRequest())
-                .body(payload)
-                .post(AUTO_GEN_ENDPOINT);
+        Response response = ApiClient.post(AUTO_GEN_ENDPOINT, payload);
 
         response.then().spec(ResponseSpecs.success201());
 
@@ -70,10 +63,7 @@ public class AutoGenerationOptionApiTest extends BaseApiTest {
         payload.put("source", sourceUUID);
         LogUtil.info("Payload with real source: " + payload);
 
-        Response response = RestAssured
-                .given(RequestSpecs.adminRequest())
-                .body(payload)
-                .post(AUTO_GEN_ENDPOINT);
+        Response response = ApiClient.post(AUTO_GEN_ENDPOINT, payload);
 
         response.then().spec(ResponseSpecs.success201());
         String uuid = response.jsonPath().getString("uuid");
@@ -87,9 +77,7 @@ public class AutoGenerationOptionApiTest extends BaseApiTest {
 
         String uuid = createOptionAndGetUUID();
 
-        Response response = RestAssured
-                .given(RequestSpecs.adminRequest())
-                .get(AUTO_GEN_ENDPOINT + "/" + uuid);
+        Response response = ApiClient.get(AUTO_GEN_ENDPOINT + "/" + uuid);
 
         response.then().spec(ResponseSpecs.success200());
         Assert.assertEquals(response.jsonPath().getString("uuid"), uuid);
@@ -104,14 +92,9 @@ public class AutoGenerationOptionApiTest extends BaseApiTest {
         Map<String, Object> payload = PatientPayloadFactory.AutoGenerationOptionPayloads.validOption();
         payload.put("manualEntryEnabled", false);
 
-        Response response = RestAssured
-                .given(RequestSpecs.adminRequest())
-                .body(payload)
-                .post(AUTO_GEN_ENDPOINT + "/" + uuid);
-
+        Response response = ApiClient.post(AUTO_GEN_ENDPOINT + "/" + uuid, payload);
         response.then().statusCode(200);
 
-        // Мягкая проверка: поле может быть null, проверяем только что оно существует
         Object manualEnabledObj = response.jsonPath().get("manualEntryEnabled");
         if (manualEnabledObj != null) {
             LogUtil.info("manualEntryEnabled after update: " + manualEnabledObj);
@@ -124,20 +107,14 @@ public class AutoGenerationOptionApiTest extends BaseApiTest {
     @Test(description = "[AUTO-004] Delete AutoGenerationOption", groups = {"api"})
     public void deleteOption() {
         LogUtil.info("=== AUTO-004: Delete AutoGenerationOption ===");
-
         String uuid = createOptionAndGetUUID();
 
-        Response response = RestAssured
-                .given(RequestSpecs.adminRequest())
-                .delete(AUTO_GEN_ENDPOINT + "/" + uuid + "?purge=true");
-
+        Response response = ApiClient.delete(AUTO_GEN_ENDPOINT + "/" + uuid + "?purge=true");
         response.then().spec(ResponseSpecs.success204());
         LogUtil.info("Deleted AutoGenerationOption UUID: " + uuid);
 
         // Verify deletion
-        Response getResponse = RestAssured
-                .given(RequestSpecs.adminRequest())
-                .get(AUTO_GEN_ENDPOINT + "/" + uuid);
+        Response getResponse = ApiClient.get(AUTO_GEN_ENDPOINT + "/" + uuid);
         getResponse.then().spec(ResponseSpecs.notFound404());
         LogUtil.info("Verified deletion: 404 Not Found");
     }
@@ -147,11 +124,7 @@ public class AutoGenerationOptionApiTest extends BaseApiTest {
         LogUtil.info("=== AUTO-005: Create AutoGenerationOption with missing source");
         Map<String, Object> payload = PatientPayloadFactory.AutoGenerationOptionPayloads.missingSource();
 
-        Response response = RestAssured
-                .given(RequestSpecs.adminRequest())
-                .body(payload)
-                .post(AUTO_GEN_ENDPOINT);
-
+        Response response = ApiClient.post(AUTO_GEN_ENDPOINT, payload);
         response.then().spec(ResponseSpecs.badRequest400());
         LogUtil.info("Correctly received 400 Bad Request for missing source");
     }
@@ -161,11 +134,7 @@ public class AutoGenerationOptionApiTest extends BaseApiTest {
         LogUtil.info("=== AUTO-006: Create AutoGenerationOption with invalid identifierType");
         Map<String, Object> payload = PatientPayloadFactory.AutoGenerationOptionPayloads.invalidIdentifierType();
 
-        Response response = RestAssured
-                .given(RequestSpecs.adminRequest())
-                .body(payload)
-                .post(AUTO_GEN_ENDPOINT);
-
+        Response response = ApiClient.post(AUTO_GEN_ENDPOINT, payload);
         response.then().spec(ResponseSpecs.badRequest400());
         LogUtil.info("Correctly received 400 Bad Request for invalid identifierType");
     }
@@ -180,10 +149,7 @@ public class AutoGenerationOptionApiTest extends BaseApiTest {
         payload.put("source", sourceUUID);
         LogUtil.info("Payload with real source (no location): " + payload);
 
-        Response response = RestAssured
-                .given(RequestSpecs.adminRequest())
-                .body(payload)
-                .post(AUTO_GEN_ENDPOINT);
+        Response response = ApiClient.post(AUTO_GEN_ENDPOINT, payload);
 
         response.then().spec(ResponseSpecs.success201());
         LogUtil.info("Successfully created AutoGenerationOption without location");

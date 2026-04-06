@@ -5,24 +5,15 @@
         <listener class-name="utils.TestListener"/>
     </listeners>
 
-    <!--
-        TestNG  defines:
-        - where tests are located
-        - suite structure
-
-        TestNG DOES NOT decide:
-        - smoke / regression / api / ui
-        Maven will filter tests by groups.
-    -->
-
-    <test name="All Tests">
-
-        <!-- Maven will pass group filters into TestNG at runtime -->
-
+    <test name="UI Tests">
         <packages>
-            <package name="tests"/>
+            <package name="tests.ui.*"/>
         </packages>
-
+    </test>
+    <test name="API Tests">
+        <packages>
+            <package name="tests.api.*"/>
+        </packages>
     </test>
 
 </suite>

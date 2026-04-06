@@ -21,18 +21,44 @@ public class TestListener implements ITestListener {
     public void onTestFailure(ITestResult result) {
         LogUtil.error("Test failed: " + result.getName());
 
-        // Screenshot
-        String screenshotPath = ScreenshotUtil.captureScreenshot(result.getName());
-        if (screenshotPath != null) {
-            Allure.addAttachment("Screenshot - " + result.getName(),
-                    ScreenshotUtil.getScreenshotAsStream(screenshotPath));
-        }
+        String className = result.getTestClass().getName();
 
-        // Page source
-        String pageSourcePath = PageSourceUtil.savePageSource(result.getName());
-        if (pageSourcePath != null) {
-            Allure.addAttachment("Page Source - " + result.getName(),
-                    PageSourceUtil.getPageSourceAsStream(pageSourcePath));
+        // ===== UI TESTS =====
+        if (className.contains(".ui.")) {
+            System.out.println("UI test → taking screenshot");
+
+            String screenshotPath = ScreenshotUtil.captureScreenshot(result.getName());
+
+            if (screenshotPath != null) {
+                Allure.addAttachment(
+                        "Screenshot - " + result.getName(),
+                        ScreenshotUtil.getScreenshotAsStream(screenshotPath)
+                );
+            }
+
+            String pageSourcePath = PageSourceUtil.savePageSource(result.getName());
+
+            if (pageSourcePath != null) {
+                Allure.addAttachment(
+                        "Page Source - " + result.getName(),
+                        PageSourceUtil.getPageSourceAsStream(pageSourcePath)
+                );
+            }
+
+            // ===== API TESTS =====
+        } else if (className.contains(".api.")) {
+            System.out.println("API test → attaching response");
+
+            Object response = result.getAttribute("apiResponse");
+
+            if (response != null) {
+                Allure.addAttachment(
+                        "API Response",
+                        response.toString()
+                );
+            } else {
+                System.out.println("No API response found to attach");
+            }
         }
     }
 
