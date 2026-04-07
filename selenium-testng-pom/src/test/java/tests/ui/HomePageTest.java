@@ -4,51 +4,55 @@ import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.HomePage;
-import utils.ConfigReader;
 import utils.LogUtil;
 
 public class HomePageTest extends BaseTest {
 
+    private final String demoUrl = "https://openmrs.org/demo"; // Public OpenMRS demo URL
+
     @Test(description = "[UI-001][Smoke] Verify home page loads and Explore buttons are visible", groups = {"smoke", "ui"})
     public void testHomePage() {
-        String url = ConfigReader.get("ui.base.url") + "/demo";
-        LogUtil.info("Opening URL: " + url);
-        driver.get(url);
+        LogUtil.info("=== UI-001: Verify home page and buttons ===");
+
+        driver.get(demoUrl);
         HomePage homePage = new HomePage(driver);
+
         LogUtil.info("Current URL: " + driver.getCurrentUrl());
 
-        Assert.assertTrue(driver.getCurrentUrl().contains("/demo"));
-        Assert.assertTrue(homePage.isDemoPageDisplayed());
-        Assert.assertTrue(homePage.isExplore3Displayed());
-        Assert.assertTrue(homePage.isExplore2Displayed());
-        System.out.println(driver.getCurrentUrl());
-        LogUtil.info("Home page elements verified");
+        Assert.assertTrue(homePage.isDemoPageDisplayed(), "Demo page should be displayed");
+        Assert.assertTrue(homePage.isExplore3Displayed(), "Explore OpenMRS 3 button should be visible");
+        Assert.assertTrue(homePage.isExplore2Displayed(), "Explore OpenMRS 2 button should be visible");
+
+        LogUtil.info("Home page elements verified successfully");
     }
+
     @Test(description = "[UI-002][Smoke] Click Explore OpenMRS 3 button", groups = {"smoke", "ui"})
     public void testExploreOpenMRS3() {
+        LogUtil.info("=== UI-002: Click Explore OpenMRS 3 ===");
 
-        String url = ConfigReader.get("ui.base.url") + "/demo";
-        LogUtil.info("Opening URL: " + url);
-
-        driver.get(url);
+        driver.get(demoUrl);
         HomePage homePage = new HomePage(driver);
-        LogUtil.info("Click Explore OpenMRS 3");
+
+        LogUtil.info("Clicking Explore OpenMRS 3 button");
         homePage.clickExplore3();
-        LogUtil.info("Current URL after click: " + driver.getCurrentUrl());
-        Assert.assertTrue(driver.getCurrentUrl().contains("openmrs/spa/login"));
+
+        String currentUrl = driver.getCurrentUrl();
+        LogUtil.info("Current URL after click: " + currentUrl);
+        Assert.assertTrue(currentUrl.contains("openmrs/spa/login"), "Should navigate to OpenMRS 3 login page");
     }
 
     @Test(description = "[UI-003][Smoke] Click Explore OpenMRS 2 button", groups = {"smoke", "ui"})
     public void testExploreOpenMRS2() {
+        LogUtil.info("=== UI-003: Click Explore OpenMRS 2 ===");
 
-        String url = ConfigReader.get("ui.base.url") + "/demo";
-        LogUtil.info("Opening URL: " + url);
-
-        driver.get(url);
+        driver.get(demoUrl);
         HomePage homePage = new HomePage(driver);
-        LogUtil.info("Click Explore OpenMRS 2");
+
+        LogUtil.info("Clicking Explore OpenMRS 2 button");
         homePage.clickExplore2();
-        LogUtil.info("Current URL after click: " + driver.getCurrentUrl());
-        Assert.assertTrue(driver.getCurrentUrl().contains("openmrs/login.htm"));
+
+        String currentUrl = driver.getCurrentUrl();
+        LogUtil.info("Current URL after click: " + currentUrl);
+        Assert.assertTrue(currentUrl.contains("openmrs/login.htm"), "Should navigate to OpenMRS 2 login page");
     }
 }

@@ -1,134 +1,85 @@
 package utils.api;
 
-import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.testng.ITestResult;
-import org.testng.Reporter;
 
 import java.util.Map;
 
+import static io.restassured.RestAssured.given;
+
 public class ApiClient {
 
-    // =========================
-    // POST
-    // =========================
+    // Base API URL
+    private static final String BASE_URL = utils.ConfigReader.get("api.base.url");
 
-    public static Response post(String path, Object body, String authHeader) {
-        return post(path, body, authHeader, null);
+    // ----------------------
+    // Admin requests
+    // ----------------------
+    public static Response getAsAdmin(String endpoint) {
+        return getAsAdmin(endpoint, null);
     }
 
-    public static Response post(String path, Object body, String authHeader, Map<String, String> cookies) {
-
-        RequestSpecification request = RestAssured.given()
-                .contentType("application/json")
-                .log().all();
-
-        if (authHeader != null) {
-            request.header("Authorization", authHeader);
-        }
-
-        if (cookies != null) {
-            request.cookies(cookies);
-        }
-
-        Response response = request
-                .body(body)
-                .redirects().follow(false)
-                .post(path);
-
-        response.then().log().all();
-        attachResponseToListener(response);
-
-        return response;
+    public static Response getAsAdmin(String endpoint, Map<String, String> cookies) {
+        RequestSpecification spec = RequestSpecs.adminRequest().baseUri(BASE_URL);
+        if (cookies != null) spec.cookies(cookies);
+        return spec.when().get(endpoint).andReturn();
     }
 
-    // =========================
-    // GET
-    // =========================
-
-    public static Response get(String path, String authHeader) {
-        return get(path, authHeader, null);
+    public static Response postAsAdmin(String endpoint, String jsonBody) {
+        RequestSpecification spec = RequestSpecs.adminRequest().baseUri(BASE_URL).body(jsonBody);
+        return spec.when().post(endpoint).andReturn();
     }
 
-    public static Response get(String path, String authHeader, Map<String, String> cookies) {
-
-        RequestSpecification request = RestAssured.given()
-                .log().all();
-
-        if (authHeader != null) {
-            request.header("Authorization", authHeader);
-        }
-
-        if (cookies != null) {
-            request.cookies(cookies);
-        }
-
-        Response response = request
-                .redirects().follow(false)
-                .get(path);
-
-        response.then().log().all();
-        attachResponseToListener(response);
-
-        return response;
+    public static Response deleteAsAdmin(String endpoint) {
+        RequestSpecification spec = RequestSpecs.adminRequest().baseUri(BASE_URL);
+        return spec.when().delete(endpoint).andReturn();
     }
 
-    // =========================
-    // DELETE
-    // =========================
-
-    public static Response delete(String path, String authHeader) {
-        return delete(path, authHeader, null);
+    // ----------------------
+    // GET requests
+    // ----------------------
+    public static Response get(String endpoint) {
+        return get(endpoint, null, null);
     }
 
-    public static Response delete(String path, String authHeader, Map<String, String> cookies) {
-
-        RequestSpecification request = RestAssured.given()
-                .log().all();
-
-        if (authHeader != null) {
-            request.header("Authorization", authHeader);
-        }
-
-        if (cookies != null) {
-            request.cookies(cookies);
-        }
-
-        Response response = request
-                .redirects().follow(false)
-                .delete(path);
-
-        response.then().log().all();
-        attachResponseToListener(response);
-
-        return response;
+    public static Response get(String endpoint, String authHeader) {
+        return get(endpoint, authHeader, null);
     }
 
-    // =========================
-    // WITHOUT AUTH
-    // =========================
-
-    public static Response post(String path, Object body) {
-        return post(path, body, null, null);
+    public static Response get(String endpoint, Map<String, String> cookies) {
+        return get(endpoint, null, cookies);
     }
 
-    public static Response get(String path) {
-        return get(path, null, null);
+    public static Response get(String endpoint, String authHeader, Map<String, String> cookies) {
+        RequestSpecification spec = given().baseUri(BASE_URL).contentType("application/json");
+        if (authHeader != null) spec.header("Authorization", authHeader);
+        if (cookies != null) spec.cookies(cookies);
+        return spec.when().get(endpoint).andReturn();
     }
 
-    public static Response delete(String path) {
-        return delete(path, null, null);
+    // ----------------------
+    // POST requests
+    // ----------------------
+    public static Response post(String endpoint, String jsonBody) {
+        return post(endpoint, jsonBody, null);
     }
 
-    // =========================
-    // HELPER
-    // =========================
+    public static Response post(String endpoint, String jsonBody, String authHeader) {
+        RequestSpecification spec = given().baseUri(BASE_URL).contentType("application/json").body(jsonBody);
+        if (authHeader != null) spec.header("Authorization", authHeader);
+        return spec.when().post(endpoint).andReturn();
+    }
 
-    private static void attachResponseToListener(Response response) {
-        ITestResult result = Reporter.getCurrentTestResult();
-        if (result != null && response != null) {
-            result.setAttribute("apiResponse", response.asPrettyString());
-        }
+    // ----------------------
+    // DELETE requests
+    // ----------------------
+    public static Response delete(String endpoint) {
+        return delete(endpoint, null);
+    }
+
+    public static Response delete(String endpoint, String authHeader) {
+        RequestSpecification spec = given().baseUri(BASE_URL).contentType("application/json");
+        if (authHeader != null) spec.header("Authorization", authHeader);
+        return spec.when().delete(endpoint).andReturn();
     }
 }
