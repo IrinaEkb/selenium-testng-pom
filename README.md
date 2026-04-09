@@ -21,12 +21,6 @@ Visits represent patient interactions and clinical events. Testing visit creatio
 ### Authentication & Session
 Secure login and session management protect patient data and maintain compliance with privacy standards. Tests verify that only authorized users can access the system and that session handling is reliable.
 
-### Database Verification (E2E)
-Ensures that operations performed via the UI or API are **persisted correctly in the database**, maintaining consistency between layers and preventing data corruption.
-
-### UI Smoke Tests
-Critical UI elements and workflows are tested to guarantee **usability and accessibility**, ensuring clinicians and staff can perform essential actions without errors or confusion.
-
 ---
 
 ## Framework / Approaches
