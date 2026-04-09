@@ -24,7 +24,7 @@ public class PatientDbTest {
         return response.jsonPath().getString("uuid");
     }
 
-    @Test(description = "[PATIENT-001] Create Patient - DB verification", groups = {"db"})
+    @Test(description = "[PATIENT-001] Create Patient - DB verification", groups = {"e2e"})
     public void createPatientDb() throws Exception {
         Map<String, Object> payload = PatientPayloadFactory.createValidPatient();
         String uuid = createPatientAndGetUuid(payload);
@@ -39,7 +39,7 @@ public class PatientDbTest {
         }
     }
 
-    @Test(description = "[PATIENT-004] Missing optional fields - DB validation", groups = {"db"})
+    @Test(description = "[PATIENT-004] Missing optional fields - DB validation", groups = {"e2e"})
     public void missingOptionalFieldsDb() throws Exception {
         Map<String, Object> payload = PatientPayloadFactory.withoutGender();
         Response response = RestAssured
@@ -49,7 +49,7 @@ public class PatientDbTest {
         Assert.assertEquals(response.getStatusCode(), 400);
     }
 
-    @Test(description = "[PATIENT-006] Birthdate In Future - DB validation", groups = {"db"})
+    @Test(description = "[PATIENT-006] Birthdate In Future - DB validation", groups = {"e2e"})
     public void birthdateInFutureDb() throws Exception {
         Map<String, Object> payload = PatientPayloadFactory.birthdateInFuture();
         Response response = RestAssured
@@ -59,7 +59,7 @@ public class PatientDbTest {
         Assert.assertEquals(response.getStatusCode(), 400);
     }
 
-    @Test(description = "[PATIENT-005] Non-existing patient_id - DB check", groups = {"db"})
+    @Test(description = "[PATIENT-005] Non-existing patient_id - DB check", groups = {"e2e"})
     public void nonExistingPatientIdDb() throws Exception {
         try (Connection conn = DBUtil.getConnection()) {
             String query = "SELECT * FROM patient WHERE patient_id = ?";
