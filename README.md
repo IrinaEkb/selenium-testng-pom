@@ -2,89 +2,70 @@
 
 ## Overview
 
-This project implements **automated UI and API tests** for OpenMRS.
+This project focuses on **validating critical OpenMRS functionalities** to ensure the system supports reliable patient care workflows.  
+Tests cover core business areas that are **essential for operational integrity**, including patient management, visit tracking, identifier generation, and authentication.
 
-### Framework / Approaches
+---
 
-- **TestNG** – test framework for structuring tests, running them in groups, and parallel execution
-- **Page Object Model (POM)** – each page has a class with locators and actions, making tests easier to maintain
-- **Data-Driven Testing** – test data is stored externally (Excel, JSON) for flexible testing
-- **Listeners & Screenshots** – automatically capture logs and screenshots on test failures
-- **DriverManager** – custom utility to create and manage WebDriver instances for different browsers (Chrome, Safari)
+## Tested Areas
 
-### Tools / Libraries
+### Patient Management
+Patient data is the **core of OpenMRS**. Tests cover creating, updating, and retrieving patients to ensure that all information is captured correctly, mandatory fields are enforced, and duplicate or inconsistent records are prevented.
 
-- **Selenium 4** – automates browser interactions for UI testing
-- **Allure** – generates test reports and dashboards
-- **REST-assured** – API testing
-- **Apache POI** – reading/writing Excel files for data-driven tests
-- **Log4j2 / SLF4J** – logging test execution
+### Patient Identifiers (AutoGenerationOption)
+Unique identifiers are critical for **accurate patient identification**. Automated tests validate that identifiers are generated according to business rules, ensuring reliable patient records and preventing duplicates.
+
+### Visit Management
+Visits represent patient interactions and clinical events. Testing visit creation, updates, and retrieval ensures that **clinical workflows are correctly tracked** and reporting reflects actual patient activity.
+
+### Authentication & Session
+Secure login and session management protect patient data and maintain compliance with privacy standards. Tests verify that only authorized users can access the system and that session handling is reliable.
+
+### Database Verification (E2E)
+Ensures that operations performed via the UI or API are **persisted correctly in the database**, maintaining consistency between layers and preventing data corruption.
+
+### UI Smoke Tests
+Critical UI elements and workflows are tested to guarantee **usability and accessibility**, ensuring clinicians and staff can perform essential actions without errors or confusion.
+
+---
+
+## Framework / Approaches
+
+- **TestNG** – structures tests into groups and supports parallel execution  
+- **Page Object Model (POM)** – encapsulates page locators and actions for maintainability  
+- **Data-Driven Testing** – uses external data (Excel, JSON) to cover real-world scenarios  
+- **Listeners & Screenshots** – automatically capture logs and screenshots on failures  
+- **DriverManager** – manages WebDriver instances for different browsers (Chrome, Safari)
+
+---
+
+## Tools / Libraries
+
+- **Selenium 4** – UI automation  
+- **REST-assured** – API testing  
+- **Allure** – test reports and dashboards  
+- **Apache POI** – Excel file handling  
+- **Log4j2 / SLF4J** – logging
 
 ---
 
 ## Environments
-Project supports 3 environments:
 
--Denv=local # OpenMRS via SDK
--Denv=docker # OpenMRS in Docker
--Denv=demo # Public demo server
+Project supports 2 main environments:
 
-Choose one environment and follow the corresponding setup.
----
-# 1. Docker
+- **Docker** – OpenMRS in Docker for controlled, repeatable tests  
+- **Public Demo** – OpenMRS demo server for verifying compatibility with public instance
 
-## Requirements
-- Docker
-- Docker Compose
-
-## Setup
+### Docker
 ```bash
 git clone https://github.com/IrinaEkb/selenium-testng-pom.git
 cd selenium-testng-pom
 docker compose up
-```
-Application URL
-http://localhost:8082/openmrs/
-
-Credentials
-admin / Admin123
-
-Run tests
-```bash
+# Application URL: http://localhost:8082/openmrs/
 mvn test -Denv=docker
-```
 
-# 2. Local (OpenMRS SDK)
-## Requirements
-- Java 21
-- Maven
-- OpenMRS SDK
-
-## Setup
-```bash
+### Demo
 git clone https://github.com/IrinaEkb/selenium-testng-pom.git
 cd selenium-testng-pom
-mvn openmrs-sdk:run
-```
-Application URL
-http://localhost:8081/openmrs/
-
-Run tests
-```bash
-mvn test -Denv=local
-```
-
-# 3. Public Demo
-## Requirements
-- Java 21
-- Maven
-
-## Setup
-```bash
-git clone https://github.com/IrinaEkb/selenium-testng-pom.git
-cd selenium-testng-pom
-```
-Run tests
-```bash
+# Application URL: https://openmrs.org/demo
 mvn test -Denv=demo
-```
