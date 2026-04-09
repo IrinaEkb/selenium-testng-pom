@@ -2,8 +2,8 @@
 
 ## Overview
 
-This project focuses on **validating critical OpenMRS functionalities** to ensure the system supports reliable patient care workflows.  
-Tests cover core business areas that are **essential for operational integrity**, including patient management, visit tracking, identifier generation, and authentication.
+This project focuses on validating critical OpenMRS functionalities to ensure the system supports reliable patient care workflows.  
+Tests cover core business areas that are essential for operational integrity, including patient management, visit tracking, identifier generation, and authentication.
 
 ---
 
@@ -13,10 +13,10 @@ Tests cover core business areas that are **essential for operational integrity**
 Patient data is the **core of OpenMRS**. Tests cover creating, updating, and retrieving patients to ensure that all information is captured correctly, mandatory fields are enforced, and duplicate or inconsistent records are prevented.
 
 ### Patient Identifiers (AutoGenerationOption)
-Unique identifiers are critical for **accurate patient identification**. Automated tests validate that identifiers are generated according to business rules, ensuring reliable patient records and preventing duplicates.
+Unique identifiers are critical for accurate patient identification. Automated tests validate that identifiers are generated according to business rules, ensuring reliable patient records and preventing duplicates.
 
 ### Visit Management
-Visits represent patient interactions and clinical events. Testing visit creation, updates, and retrieval ensures that **clinical workflows are correctly tracked** and reporting reflects actual patient activity.
+Visits represent patient interactions and clinical events. Testing visit creation, updates, and retrieval ensures that clinical workflows are correctly tracked and reporting reflects actual patient activity.
 
 ### Authentication & Session
 Secure login and session management protect patient data and maintain compliance with privacy standards. Tests verify that only authorized users can access the system and that session handling is reliable.
