@@ -7,7 +7,11 @@ import java.sql.Statement;
 
 public class DBUtil {
     public static Connection getConnection() throws Exception {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/openmrs", "username", "password");
+        return DriverManager.getConnection(
+                "jdbc:mysql://localhost:3307/openmrs",
+                "openmrs",
+                "openmrs"
+        );
     }
 
     public static void executeQuery(String query) throws Exception {

@@ -7,27 +7,22 @@
 
 # Exit on any error
 set -e
-
-# Get environment argument (default to demo)
-ENV=${1:-demo}
-echo "Starting OpenMRS tests for environment: $ENV"
-
-# ------------------------------
-# Set demo server variables
-# ------------------------------
 if [ "$ENV" == "demo" ]; then
-  export UI_BASE_URL="https://openmrs.org"
-  export API_BASE_URL="https://o3.openmrs.org/openmrs"
+  export UI_BASE_URL="https://test3.openmrs.org"
+  export API_BASE_URL="https://test3.openmrs.org/openmrs"
   export USERNAME="admin"
   export PASSWORD="Admin123"
+
+elif [ "$ENV" == "docker" ]; then
+  export UI_BASE_URL="http://localhost:8082/openmrs"
+  export API_BASE_URL="http://localhost:8082/openmrs"
+  export USERNAME="admin"
+  export PASSWORD="Admin123"
+
 else
   echo "Error: Unsupported environment: $ENV"
   exit 1
 fi
-
-echo "UI_BASE_URL=$UI_BASE_URL"
-echo "API_BASE_URL=$API_BASE_URL"
-
 # ------------------------------
 # Run Maven tests
 # ------------------------------
