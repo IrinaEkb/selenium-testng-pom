@@ -1,5 +1,72 @@
 # OpenMRS QA Automation Project
 
+## 📂 Project Structure
+
+```text
+selenium-testng-pom/
+├── docs/
+│   ├── bugReport_Patient006.md
+│   ├── test-strategy.md
+│   └── testCases/
+│       ├── PROJ-1-demo-page.md
+│       ├── PROJ-2-login-session.md
+│       ├── PROJ-3-patient.md
+│       ├── PROJ-4-auto-generation-patient-identifier.md
+│       └── PROJ-5-visit-management.md
+│
+├── src/
+│   ├── main/
+│   │   └── java/
+│   │       ├── base/
+│   │       │   ├── BasePage.java
+│   │       │   └── BaseTest.java
+│   │       ├── pages/
+│   │       │   └── HomePage.java
+│   │       └── utils/
+│   │           ├── api/
+│   │           │   ├── ApiClient.java
+│   │           │   ├── AuthHelper.java
+│   │           │   ├── BaseApiTest.java
+│   │           │   ├── PatientPayloadFactory.java
+│   │           │   ├── RequestSpecs.java
+│   │           │   ├── ResponseSpecs.java
+│   │           │   └── VisitPayloadFactory.java
+│   │           ├── ConfigReader.java
+│   │           ├── DBUtil.java
+│   │           ├── DriverManager.java
+│   │           ├── ExcelUtil.java
+│   │           ├── LogUtil.java
+│   │           ├── PageSourceUtil.java
+│   │           ├── ScreenshotUtil.java
+│   │           └── TestListener.java
+│   │
+│   └── test/
+│       ├── java/
+│       │   └── tests/
+│       │       ├── api/
+│       │       │   ├── AutoGenerationOptionApiTest.java
+│       │       │   ├── DebugApi.java
+│       │       │   ├── LoginSession.java
+│       │       │   ├── PatientApiTest.java
+│       │       │   └── VisitManagementTest.java
+│       │       ├── db/
+│       │       │   └── PatientDbTest.java
+│       │       └── ui/
+│       │           └── HomePageTest.java
+│       │
+│       └── resources/
+│           ├── demo.properties
+│           ├── docker.properties
+│           ├── local.properties
+│           ├── log4j2.xml
+│           └── testng.xml
+│
+├── pom.xml
+├── run_tests.sh
+├── azure-pipelines.yml
+└── README.md
+```
+
 ## Overview
 
 This project focuses on validating critical OpenMRS functionalities to ensure the system supports reliable patient care workflows.  
