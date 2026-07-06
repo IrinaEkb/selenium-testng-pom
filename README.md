@@ -130,3 +130,36 @@ git clone https://github.com/IrinaEkb/selenium-testng-pom.git
 cd selenium-testng-pom
 # Application URL: https://openmrs.org/demo
 mvn test -Denv=demo
+```
+
+## Patient Journey Workflow
+
+```text
+Patient Registration
+        │
+        ▼
+     Triage
+        │
+        ▼
+  Consultation
+        │
+        ├──────────────► Lab / Orders
+        │                     │
+        │                     ▼
+        │               Dispensing
+        │                     │
+        ▼                     │
+     Outcome ◄────────────────┘
+        │
+        ├────────► Admission
+        │              │
+        │              ▼
+        │          Transfer
+        │              │
+        │              ▼
+        └──────────► Discharge
+                       │
+                       ▼
+                   Visit End
+```
+
