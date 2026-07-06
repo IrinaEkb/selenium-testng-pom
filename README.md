@@ -103,6 +103,7 @@ Secure login and session management protect patient data and maintain compliance
 ## Tools / Libraries
 
 - **Selenium 4** – UI automation  
+- **Java language**
 - **REST-assured** – API testing  
 - **Allure** – test reports and dashboards  
 - **Apache POI** – Excel file handling  
